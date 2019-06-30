@@ -6,3 +6,5 @@ edition = "2018"
 
 [dependencies]
 trust-dns-resolver = "0.11"
+trust-dns = "0.16"
+error-chain = "0.12.1"
