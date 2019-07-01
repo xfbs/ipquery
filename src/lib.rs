@@ -1,17 +1,12 @@
+use error_chain::{bail, error_chain};
 use std::net::*;
 use std::str::FromStr;
 use trust_dns::client::{Client, SyncClient};
-use trust_dns::udp::UdpClientConnection;
 use trust_dns::op::DnsResponse;
 use trust_dns::rr::{DNSClass, Name, RData, Record, RecordType};
-use error_chain::{error_chain, ChainedError, bail};
+use trust_dns::udp::UdpClientConnection;
 
 error_chain! {
-    errors {
-        NoResponse {
-            description("didn't receive response.")
-        }
-    }
 }
 
 pub enum Provider {
@@ -51,12 +46,12 @@ impl Provider {
         if let &RData::A(ref ip) = answers[0].rdata() {
             Ok(*ip)
         } else {
-            bail!(ErrorKind::NoResponse)
+            Err("".into())
         }
     }
 
     fn query_ipv6_opendns(&self) -> Result<Ipv6Addr> {
-        let address = "[2620:119:35::35]:53".parse().chain_err(|| "")?;
+        let address = "[2620:119:35::35]:53".parse().unwrap();
         let conn = UdpClientConnection::new(address).unwrap();
         let client = SyncClient::new(conn);
 
@@ -69,7 +64,7 @@ impl Provider {
         if let &RData::AAAA(ref ip) = answers[0].rdata() {
             Ok(*ip)
         } else {
-            bail!(ErrorKind::NoResponse)
+            Err("".into())
         }
     }
 }
