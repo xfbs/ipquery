@@ -10,3 +10,4 @@ license = "MIT"
 [dependencies]
 trust-dns = "0.16"
 failure = "0.1.5"
+trust-dns-resolver = "0.11.1"

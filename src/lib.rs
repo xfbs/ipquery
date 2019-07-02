@@ -6,6 +6,9 @@ use trust_dns::rr::{DNSClass, Name, RData, Record, RecordType};
 use trust_dns::udp::UdpClientConnection;
 use failure::*;
 
+mod dns_ip;
+pub use dns_ip::{Provider as DnsIpProvider};
+
 #[derive(Fail, Debug)]
 enum Errors {
     #[fail(display = "No response.")]

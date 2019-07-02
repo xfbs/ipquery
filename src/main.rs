@@ -11,4 +11,10 @@ fn main() {
         Ok(ip) => println!("IPv6 = {}", ip),
         Err(e) => println!("IPv6 lookup error: {}", e),
     }
+
+    let provider = DnsIpProvider::default();
+    match provider.query_ip() {
+        Ok(ip) => println!("DNS IP = {}", ip),
+        Err(e) => println!("DNS IP error: {}", e)
+    }
 }
