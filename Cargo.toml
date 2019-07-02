@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Patrick Elsen <pelsen@xfbs.net>"]
 edition = "2018"
 description = "Tool to query your own public IP address."
-repositoy = "https://github.com/xfbs/ipquery"
+repository = "https://github.com/xfbs/ipquery"
 license = "MIT"
 
 [dependencies]
