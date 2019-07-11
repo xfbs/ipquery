@@ -17,3 +17,6 @@ Check if there are any P2P protocols or anything that could be used.
     ipquery -h
     ipquery -l (to list providers)
 
+### Other ways
+
+See https://superuser.com/questions/522887/how-can-i-get-my-public-ip-address-from-the-command-line-if-i-am-behind-a-route.
