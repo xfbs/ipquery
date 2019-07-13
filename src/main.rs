@@ -43,7 +43,7 @@ fn main() {
             if let Some(provider) = ipquery::get_ipv4_query(value) {
                 match provider.query_ipv4() {
                     Ok(ip) => println!("IPv4 = {}", ip),
-                    Err(e) => println!("IPv4 lookup error: {}", e),
+                    Err(e) => println!("IPv4 lookup error: {:?}", e),
                 }
             } else {
                 println!("IPv4 provider {} unknown.", value);
