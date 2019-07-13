@@ -4,10 +4,12 @@ use failure::Error;
 pub mod opendns;
 pub mod google;
 pub mod upnp;
+pub mod codeux;
 
 pub use opendns::OpenDNS;
 pub use google::Google;
 pub use upnp::Upnp;
+pub use codeux::Codeux;
 
 pub trait GetIpv4 {
     fn query_ipv4(&self) -> Result<Ipv4Addr, Error>;
@@ -27,6 +29,7 @@ pub fn get_ipv4_query(name: &str) -> Option<Box<dyn GetIpv4>> {
         "opendns2" => Some(Box::new(OpenDNS::Resolver2)),
         "opendns3" => Some(Box::new(OpenDNS::Resolver3)),
         "opendns4" => Some(Box::new(OpenDNS::Resolver4)),
+        "codeux" => Some(Box::new(Codeux::Default)),
         "upnp" => Some(Box::new(Upnp::Default)),
         _ => None,
     }
