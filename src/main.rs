@@ -38,11 +38,16 @@ fn main() {
         )
         .get_matches();
 
-    if matches.occurrences_of("ipv4") > 0 {
-        let provider = opendns::OpenDNS::Resolver1;
-        match provider.query_ipv4() {
-            Ok(ip) => println!("IPv4 = {}", ip),
-            Err(e) => println!("IPv4 lookup error: {}", e),
+    if let Some(values) = matches.values_of("ipv4") {
+        for value in values {
+            if let Some(provider) = ipquery::get_ipv4_query(value) {
+                match provider.query_ipv4() {
+                    Ok(ip) => println!("IPv4 = {}", ip),
+                    Err(e) => println!("IPv4 lookup error: {}", e),
+                }
+            } else {
+                println!("IPv4 provider {} unknown.", value);
+            }
         }
     }
 
