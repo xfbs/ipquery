@@ -17,7 +17,7 @@ fn main() {
                 .short("4")
                 .long("ipv4")
                 .takes_value(true)
-                .default_value("opendns")
+                .default_value("opendns1")
                 .help("Lookup the IPv4 address using the given method."),
         )
         .arg(
