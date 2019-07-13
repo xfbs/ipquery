@@ -39,7 +39,7 @@ fn main() {
         .get_matches();
 
     if matches.occurrences_of("ipv4") > 0 {
-        let provider = Provider::default();
+        let provider = opendns::OpenDNS::Resolver1;
         match provider.query_ipv4() {
             Ok(ip) => println!("IPv4 = {}", ip),
             Err(e) => println!("IPv4 lookup error: {}", e),
@@ -47,7 +47,7 @@ fn main() {
     }
 
     if matches.occurrences_of("ipv6") > 0 {
-        let provider = Provider::default();
+        let provider = opendns::OpenDNS::Resolver1;
         match provider.query_ipv6() {
             Ok(ip) => println!("IPv6 = {}", ip),
             Err(e) => println!("IPv6 lookup error: {}", e),
