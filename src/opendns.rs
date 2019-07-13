@@ -35,10 +35,10 @@ impl OpenDNS {
     pub fn ipv4_addr(&self) -> Ipv4Addr {
         use OpenDNS::*;
         match self {
-            Resolver1 => Ipv4Addr::new(208, 64, 222, 222),
-            Resolver2 => Ipv4Addr::new(208, 64, 220, 220),
-            Resolver3 => Ipv4Addr::new(208, 64, 222, 220),
-            Resolver4 => Ipv4Addr::new(208, 64, 220, 222),
+            Resolver1 => Ipv4Addr::new(208, 67, 222, 222),
+            Resolver2 => Ipv4Addr::new(208, 67, 220, 220),
+            Resolver3 => Ipv4Addr::new(208, 67, 222, 220),
+            Resolver4 => Ipv4Addr::new(208, 67, 220, 222),
         }
     }
 
