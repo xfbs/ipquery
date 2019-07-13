@@ -55,8 +55,8 @@ fn main() {
     }
 
     if matches.occurrences_of("dns") > 0 {
-        let provider = DnsIpProvider::default();
-        match provider.query_ip() {
+        let provider = google::Google::new();
+        match provider.query_dns_ip() {
             Ok(ip) => println!("DNS IP = {}", ip),
             Err(e) => println!("DNS IP error: {}", e)
         }

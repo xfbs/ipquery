@@ -2,9 +2,7 @@ use std::net::{Ipv4Addr, Ipv6Addr, IpAddr};
 use failure::Error;
 
 pub mod opendns;
-
-mod dns_ip;
-pub use dns_ip::{Provider as DnsIpProvider};
+pub mod google;
 
 pub trait GetIpv4 {
     fn query_ipv4(&self) -> Result<Ipv4Addr, Error>;
