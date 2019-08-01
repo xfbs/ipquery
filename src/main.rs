@@ -43,7 +43,9 @@ fn main() {
             if let Some(provider) = ipquery::get_ipv4_query(value) {
                 match provider.query_ipv4() {
                     Ok(ip) => println!("IPv4 = {}", ip),
-                    Err(e) => println!("IPv4 lookup error: {:?}", e),
+                    Err(e) => {
+                        println!("IPv4 lookup error: {}", &e);
+                    },
                 }
             } else {
                 println!("IPv4 provider {} unknown.", value);
@@ -51,11 +53,18 @@ fn main() {
         }
     }
 
-    if matches.occurrences_of("ipv6") > 0 {
-        let provider = opendns::OpenDNS::Resolver1;
-        match provider.query_ipv6() {
-            Ok(ip) => println!("IPv6 = {}", ip),
-            Err(e) => println!("IPv6 lookup error: {}", e),
+    if let Some(values) = matches.values_of("ipv6") {
+        for value in values {
+            if let Some(provider) = ipquery::get_ipv6_query(value) {
+                match provider.query_ipv6() {
+                    Ok(ip) => println!("IPv6 = {}", ip),
+                    Err(e) => {
+                        println!("IPv6 lookup error: {}", &e);
+                    },
+                }
+            } else {
+                println!("IPv6 provider {} unknown.", value);
+            }
         }
     }
 

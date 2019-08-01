@@ -5,11 +5,13 @@ pub mod opendns;
 pub mod google;
 pub mod upnp;
 pub mod codeux;
+pub mod ipify;
 
 pub use opendns::OpenDNS;
 pub use google::Google;
 pub use upnp::Upnp;
 pub use codeux::Codeux;
+pub use ipify::Ipify;
 
 pub trait GetIpv4 {
     fn query_ipv4(&self) -> Result<Ipv4Addr, Error>;
@@ -31,6 +33,14 @@ pub fn get_ipv4_query(name: &str) -> Option<Box<dyn GetIpv4>> {
         "opendns4" => Some(Box::new(OpenDNS::Resolver4)),
         "codeux" => Some(Box::new(Codeux::Default)),
         "upnp" => Some(Box::new(Upnp::Default)),
+        "ipify" => Some(Box::new(Ipify::Default)),
+        _ => None,
+    }
+}
+
+pub fn get_ipv6_query(name: &str) -> Option<Box<dyn GetIpv6>> {
+    match name {
+        "ipify" => Some(Box::new(Ipify::Default)),
         _ => None,
     }
 }
